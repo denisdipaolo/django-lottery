@@ -1,0 +1,28 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% bootstrap_css %}
+
+{% bootstrap_messages %}
+
+<html>
+
+<head>
+    <title>
+    	{% block title %}The Lottery{% endblock title %}
+    </title>
+    {% block stylesheets %}
+    	<link rel="stylesheet" type="text/css" href="{% static 'css/lottery.css' %}">
+    	<link rel="icon" type="image/png" href="{% static 'favicon.ico'%}">
+    {% endblock stylesheets %}
+
+</head>
+
+<body>
+    <div class="container">
+    	{% block content %}{% endblock content %}
+    </div>
+</body>
+
+
+</html>

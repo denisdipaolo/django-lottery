@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+    {{ block.super }}
+    - Login
+{% endblock %}
+
+{% block content %}
+<div class="login">
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+            <h1>Login</h1>
+            <p>New here?
+                <a href="{% url 'registration:registration' %}">Register.</a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+        <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                {% bootstrap_form form %}
+
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                        {% bootstrap_icon "star" %} Login
+                    </button>
+                
+                {% endbuttons %}
+
+                <input type="hidden" name="next" value="{{ next }}" />
+            </div>
+        </form>
+
+        <a href="{% url 'home:home' %}">Go back.</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-10">
+            <h1>Sign up</h1>
+            <p>Already registered?
+                <a href="{% url 'django.contrib.auth.views.login' %}">Sign in here.</a></p>
+        </div>
+    </div>
+    <form action="{% url 'registration_register' %}" method="post" role="form" class="form-horizontal">
+        {% csrf_token %}
+        <div class="form-group has-error">
+            {% bootstrap_form form layout='horizontal' %} {% buttons %}
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "star" %} Sign Me Up!
+                </button>
+            </div>
+        </div>
+        {% endbuttons %}
+    </form>
+</div>

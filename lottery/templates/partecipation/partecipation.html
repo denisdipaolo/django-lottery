@@ -1,0 +1,59 @@
+{% extends "logged_user_base.html" %}
+
+{% load bootstrap3 %}
+
+{% block container_view %}
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="panel panel-default">
+		    <div class="panel-heading">Partecipate</div>
+		    <div class="panel-body">
+				<form id="partecipation_form" method="post" action="" enctype="multipart/form-data">
+					<div class="form-group">
+                		{% bootstrap_form partecipation_form %}
+					    {% csrf_token %}
+					    {% buttons %}
+		                    <button type="submit" class="btn btn-primary">
+		                        {% bootstrap_icon "star" %} Partecipate
+		                    </button>
+                		{% endbuttons %}
+				    </div>
+				</form>
+		    </div>
+		</div>		
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="panel panel-default">
+		    <div class="panel-heading">Your partecipations</div>
+		    <div class="panel-body">
+			    {% if user_partecipations %}
+					<div class="list-group">
+						{% for partecipation in user_partecipations %}
+							<li class="list-group-item">
+								<h4 class="list-group-item-heading">{{ partecipation.game.name }}</h4>
+	    						<p class="list-group-item-text">
+			    					{% if partecipation.game.winner.user %}
+										The winner is <strong>{{ partecipation.game.winner.user.username }}</strong>
+										{% if partecipation.game.winner.user == user %}
+											<strong class="text-green">You won!</strong>
+										{% endif %}
+									{% else %}
+										Partecipations will close on <strong>{{ partecipation.game.date }}</strong>
+	    							{% endif %}
+	    						</p>
+							</li>
+						{% endfor %}
+					</div>
+				{% else %}
+					You are not partecipating at any game.
+				{% endif %}
+		    </div>
+		</div>		
+	</div>
+</div>
+
+{% endblock container_view %}

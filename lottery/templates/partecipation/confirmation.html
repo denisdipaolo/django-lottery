@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+You made it!
+{% endblock %}
+
+{% block content %}
+	<div class="jumbotron text-center vertical-align">
+	    <h1>Thanks for partecipating</h1>
+	    <p>I hope you will win, seriously</p>
+	    <p><a class="btn btn-primary" role="button" href="{% url 'partecipation:partecipation' %}">Go back</a></p>
+	</div>
+{% endblock %}

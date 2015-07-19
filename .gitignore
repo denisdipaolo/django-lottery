@@ -1,0 +1,2 @@
+*.pyc
+lottery/db.sqlite3

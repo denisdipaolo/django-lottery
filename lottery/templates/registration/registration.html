@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+	{{ block.super}}
+		- Register
+{% endblock %}
+
+{% block content %}
+
+	{% if registered %}
+	<div class="jumbotron text-center vertical-align">
+	    <h1>This is <strong>The Lottery</strong></h1>
+	    <p><strong>Thank you for registering!</strong></p>
+	    <p><a href="{% url 'home:home' %}">Return to the homepage.</a></p>
+	</div>
+	{% else %}
+		<div class="registration">
+			<div class="row">
+		   		<div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+					<h1>Register</h1>
+					<p>Already registered?
+					    <a href="{% url 'django.contrib.auth.views.login' %}">Login here.</a>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+		   		<div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
+					<form id="user_form" method="post" action="" enctype="multipart/form-data">
+					    {% csrf_token %}
+
+					    {% bootstrap_form user_form %}
+
+					    {% buttons %}
+					        <button type="submit" class="btn btn-primary">
+					            {% bootstrap_icon "star" %} Register
+					        </button>
+					    {% endbuttons %}
+
+					</form>
+					<a href="{% url 'home:home' %}">Go back.</a>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+
+{% endblock %}

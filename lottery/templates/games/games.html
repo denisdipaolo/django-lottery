@@ -1,0 +1,29 @@
+{% extends "logged_user_base.html" %}
+
+{% block container_view %}
+
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="panel panel-default">
+			    <div class="panel-heading">Available games</div>
+			    <div class="panel-body">
+			        <div class="list-group">
+			        	{% if available_games %}
+							{% for game in available_games %}
+								<li class="list-group-item">
+									<a href="{% url 'partecipation:partecipation' game.id %}"><h4 class="list-group-item-heading">{{ game.name }}</h4></a>
+		    						<p class="list-group-item-text">
+		    							The prize will be <strong>{{ game.prize }}</strong>, the extraction will be performed <strong>{{ game.date }}</strong>
+		    						</p>
+								</li>
+							{% endfor %}
+						{% else %}
+							No games available! 
+						{% endif %}						
+					</div>
+			    </div>
+			</div>		
+		</div>
+	</div>
+
+{% endblock container_view %}

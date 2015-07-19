@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+	{{ block.super}}
+	- Where dreams come true (or not)
+{% endblock %}
+
+{% block content %}
+
+	<div class="jumbotron text-center vertical-align">
+	    <h1>This is <strong>The Lottery</strong></h1>
+	    <p>Where dreams come true (or not)</p>
+	    <p><a class="btn btn-info" role="button" href="{% url 'django.contrib.auth.views.login' %}">Login</a>
+	        <a class="btn btn-primary" role="button" href="{% url 'registration:registration' %}">Register</a></p>
+	</div>
+
+{% endblock %}

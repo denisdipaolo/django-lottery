@@ -1,0 +1,2 @@
+class WinnerAlreadyExtracted(Exception):
+    pass
